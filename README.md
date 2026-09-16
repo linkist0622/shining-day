@@ -1,36 +1,48 @@
-# SHINING DAY
+# SHINING DAY — Trust preview
 
-善福寺から、地域で支え合う日常をつくる。構想紹介サイトの公開用コードです。
+現行のキャラクター・青と白の配色・スクロールの物語を継承した、公開確認用の静的サイトです。HTML/CSS/JavaScriptを配信し、Viteは開発時だけ使います。
 
-## 公開設定
+## 公開するページ
 
-- 接続予定ドメイン：`shining-day.com`
-- Framework Preset：Other（`vercel.json`の`framework: null`）
-- Install Command：`npm ci`
-- Build Command：`npm run build`
-- Output Directory：`dist`
+- `dist/index.html` — 思想、日常、藤澤節子、この家の前史、受け継ぐ運営。
+- `dist/guide/index.html` — ご本人・ご家族・ケアマネジャー向けの確認用ページ。
 
-`dist`内のHTML・CSS・JavaScriptを直接配信します。Viteは開発用です。
+相談・見学の受付は準備中です。申込み・採用応募・個人情報収集のフォームはありません。電話番号はユーザー確認済みの運営連絡先です。節子さんの相談条件・引継ぎの詳細は掲載していません。
 
-## ローカル確認
-
-Node.js 22.12以降を使用します。
+## 起動・検証
 
 ```sh
 npm ci
-npm run dev -- --host 127.0.0.1
+npm run dev
+npm run build
 ```
 
-表示されたURLを開きます。`npm run build`はローカル参照・アンカー・JavaScript構文・Vercel設定を検証します。
+ChatGPT WorkではSitesの管理されたプレビュー手順を使用します。`build`は2ページのアセット・アンカー・JavaScript構文・運営情報・主見出し・ホスティング設定を検証します。配信対象は`dist/`です。
 
-## ドメイン接続
+| 編集対象 | ファイル |
+| --- | --- |
+| トップ本文・構成 | `dist/index.html` |
+| ご利用・ご相談 | `dist/guide/index.html` |
+| 既存デザイン | `dist/style.css` |
+| 追加スタイル | `dist/trust.css` |
+| 場面転換・カード・メニュー | `dist/app.js` |
+| 素材 | `dist/assets/` |
 
-Vercelの対象プロジェクトのSettings → Domainsへ`shining-day.com`と`www.shining-day.com`を追加し、後者から前者へのリダイレクトを設定します。お名前.comのDNSに入力する値は、Vercelが対象プロジェクトに表示する値を使用してください。ドメインの移管は不要です。
+日本語追加後は、Noto Sans JPの元TTFとfontToolsでフォントを更新できます。
 
-現時点ではVercelプロジェクトの作成・デプロイ・ドメイン検証は未完了です。検索掲載は`noindex,nofollow`を維持しており、独自ドメインと閲覧範囲の確認後に掲載方針に合わせて変更します。noindexは閲覧制限の機能ではありません。
+```sh
+python scripts/subset-font.py /absolute/path/to/NotoSansJP.ttf
+```
 
-## 素材と内容
+旧比較画面は公開対象外です。旧比較用の生成スクリプトを実行し、公開フォルダに再生成しないでください。
 
-人物・場面はSHINING DAY用に生成した架空の構想イラストで、実在の利用者・職員・施設を示しません。フォントはGoogle FontsのNoto Sans JPをサブセット化して使用し、SIL Open Font Licenseを`dist/assets/OFL-NotoSansJP.txt`に同梱しています。
+## 情報の扱い
 
-正式なサービス条件は検討中です。利用申込み・採用応募・データ送信機能はまだ設けていません。
+- ドレッドノート株式会社の事業推進と、NPO法人DANKAIプロジェクトの後方支援を区別しています。
+- 過去の研修や活動の記録と、現在準備中のサービスを分けています。出典リンクは該当する段落にあります。
+- 相談場面のイラストは藤澤節子をモデルにしたイメージで、実際の施設や利用者の活動記録ではありません。
+- 開設日、指定、定員、料金、サービス条件など未確定の情報は、過去の計画から埋めていません。
+- フォントのライセンスは`dist/assets/OFL-NotoSansJP.txt`に含めています。
+- 公開プレビューはログイン不要で閲覧可能です。`noindex`と`robots.txt`は検索掲載を抑えるためのもので、アクセス制限ではありません。
+
+GitHubの確認用ブランチと公開プレビューで確認し、本番サイトへの反映は別途行います。
